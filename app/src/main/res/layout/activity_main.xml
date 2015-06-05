@@ -16,11 +16,17 @@
         android:layout_height="150dp"
         hyman:background_src="@drawable/icon"/>
 
+    <EditText
+        android:id="@+id/image_site"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/image_view"/>
+
     <Button
         android:id="@+id/load_image_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/image_view"
+        android:layout_below="@+id/image_site"
         android:text="load image"
         />
 
@@ -29,7 +35,7 @@
         style="@android:style/Widget.ProgressBar.Horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/image_view"
+        android:layout_below="@+id/load_image_button"
         android:max="100"
         android:visibility="gone"/>
 
@@ -37,6 +43,12 @@
         android:id="@+id/inter_image_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/progress_bar"
+        android:layout_below="@+id/load_image_button"
         android:contentDescription="beauty"/>
+
+    <!--<ImageView-->
+    <!--android:id="@+id/picasso_image_view"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_alignParentBottom="true"/>-->
 </RelativeLayout>

@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
@@ -25,24 +26,32 @@ import java.util.Set;
 
 
 public class MainActivity extends Activity {
+    //    public static final String IMAGE_URL = "http://i2.hoopchina.com" +
+    //            ".cn/blogfile/201506/02/BbsImg143322881272098_418*626.png";
+    public static final String IMAGE_URL = "http://ips.chotee" +
+            ".com/wp-content/uploads/2015/news/2605/macbookpro.jpg";
     private ProgressBar progressBar;
     private ImageView interImageView;
+    private ImageView picassoImageView;
     private LruCache<String, Bitmap> cache;
     private Button mLoadImageButton;
     private Set<String> mWaitToBeLoad;
     private BroadcastReceiver receiver;
+    private EditText imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         mWaitToBeLoad = new HashSet<>();
 
         progressBar = (ProgressBar) findViewById(R.id.progress_bar);
         interImageView = (ImageView) findViewById(R.id.inter_image_view);
+        //        picassoImageView = (ImageView) findViewById(R.id.picasso_image_view);
         mLoadImageButton = (Button) findViewById(R.id.load_image_button);
-
+        imageView = (EditText) findViewById(R.id.image_site);
+        imageView.setText(IMAGE_URL);
+        //        Picasso.with(this).load(IMAGE_URL).into(picassoImageView);
         receiver = new ConnectionChangeReceiver(new OnNetworkChangeListener() {
 
 
@@ -61,8 +70,7 @@ public class MainActivity extends Activity {
         mLoadImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new ImageLoadAsyncTask().execute("http://i2.hoopchina.com" +
-                        ".cn/blogfile/201506/02/BbsImg143322881272098_418*626.png");
+                new ImageLoadAsyncTask().execute(imageView.getText().toString());
             }
         });
         //        new ImageLoadAsyncTask().execute("http://www.baidu.com/img/bdlogo.png");
@@ -178,6 +186,5 @@ public class MainActivity extends Activity {
             return bitmap;
         }
     }
-
 
 }
