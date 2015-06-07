@@ -5,11 +5,9 @@ import android.content.BroadcastReceiver;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Paint;
 import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.util.LruCache;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -77,8 +75,8 @@ public class MainActivity extends Activity {
         });
         //        new ImageLoadAsyncTask().execute("http://www.baidu.com/img/bdlogo.png");
         //        new ProgressBarAsyncTask(this).execute();
-        Paint p = new Paint();
-        Log.i("Main_Activity", String.valueOf(p.getColor()));
+        //        Paint p = new Paint();
+        //        Log.i("Main_Activity", String.valueOf(p.getColor()));
     }
 
     @Override
