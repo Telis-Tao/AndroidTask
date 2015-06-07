@@ -46,6 +46,11 @@
         android:layout_below="@+id/load_image_button"
         android:contentDescription="beauty"/>
 
+    <com.example.telis.androidtask.EraseView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        />
     <!--<ImageView-->
     <!--android:id="@+id/picasso_image_view"-->
     <!--android:layout_width="wrap_content"-->

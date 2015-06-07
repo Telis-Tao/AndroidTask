@@ -5,9 +5,11 @@ import android.content.BroadcastReceiver;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Paint;
 import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.LruCache;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -75,6 +77,8 @@ public class MainActivity extends Activity {
         });
         //        new ImageLoadAsyncTask().execute("http://www.baidu.com/img/bdlogo.png");
         //        new ProgressBarAsyncTask(this).execute();
+        Paint p = new Paint();
+        Log.i("Main_Activity", String.valueOf(p.getColor()));
     }
 
     @Override
@@ -145,6 +149,7 @@ public class MainActivity extends Activity {
         protected void onPreExecute() {
             super.onPreExecute();
             progressBar.setVisibility(View.VISIBLE);
+            progressBar.setProgress(1);
         }
 
         @Override
@@ -160,16 +165,19 @@ public class MainActivity extends Activity {
                     URL url = new URL(params[0]);
                     conn = (HttpURLConnection) url.openConnection();
                     conn.connect();
-                    int a = conn.getContentLength();
-                    progressBar.setMax(a);
-                    byte[] b = new byte[a];
+                    int imageLength = conn.getContentLength();
+                    progressBar.setMax(imageLength);
+                    byte[] b = new byte[imageLength];
                     is = conn.getInputStream();
-                    for (int tmp, i = 0; (tmp = is.read()) != -1; ) {
+                    for (int tmp, i = 0, count = 0; (tmp = is.read()) != -1; ) {
                         b[i++] = (byte) tmp;
-                        onProgressUpdate(i);
+                        count++;
+                        if (count >= imageLength / 20) {
+                            count = 0;
+                            onProgressUpdate(i);
+                        }
                     }
                     bitmap = BitmapFactory.decodeByteArray(b, 0, b.length);
-
                 } catch (IOException e) {
                     e.printStackTrace();
                     return null;
