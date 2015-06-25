@@ -19,7 +19,6 @@
 
 6. 双游标ProgressBar in DoubleCursorProgressBar
 
-![](https://raw.githubusercontent.com/Telisa/AndroidTask/master/app/screenshot/2015-06-25-164739
-@Telis.png)
+![](https://raw.githubusercontent.com/Telisa/AndroidTask/master/app/screenshot/2015-06-25-164739%40Telis.png)
 
 Any comment could send **<9simpsons@gmail.com>**
