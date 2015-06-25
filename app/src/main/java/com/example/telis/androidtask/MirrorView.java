@@ -18,27 +18,18 @@ import android.view.View;
  * Created by Telis on 2015/6/7.
  * 镜面效果View
  */
-public class ReflectView extends View {
+public class MirrorView extends View {
     private final Bitmap resultBitmap;
     private Bitmap srcBitmap;
     private Paint mirrorPaint, shaderPaint;
     private Canvas refCanvas;
-
-    public int getShaderLength() {
-        return shaderLength;
-    }
-
-    public void setShaderLength(int shaderLength) {
-        this.shaderLength = shaderLength;
-    }
-
     private int shaderLength = 100;
 
-    public ReflectView(Context context) {
+    public MirrorView(Context context) {
         this(context, null);
     }
 
-    public ReflectView(Context context, AttributeSet attrs) {
+    public MirrorView(Context context, AttributeSet attrs) {
         super(context, attrs);
 
         srcBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.icon);

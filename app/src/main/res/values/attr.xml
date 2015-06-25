@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <attr name="background_src" format="reference"></attr>
-    <declare-styleable name="MyImageView">
-        <attr name="background_src"></attr>
+    <attr name="background_src" format="reference"/>
+    <declare-styleable name="CircleImageView">
+        <attr name="background_src"/>
 
     </declare-styleable>
 </resources>

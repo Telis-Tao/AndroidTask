@@ -73,10 +73,6 @@ public class MainActivity extends Activity {
                 new ImageLoadAsyncTask().execute(imageView.getText().toString());
             }
         });
-        //        new ImageLoadAsyncTask().execute("http://www.baidu.com/img/bdlogo.png");
-        //        new ProgressBarAsyncTask(this).execute();
-        //        Paint p = new Paint();
-        //        Log.i("Main_Activity", String.valueOf(p.getColor()));
     }
 
     @Override
