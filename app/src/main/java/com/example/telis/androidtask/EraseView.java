@@ -14,6 +14,7 @@ import android.view.MotionEvent;
 import android.view.View;
 
 /**
+ * 刮刮乐图片
  * Created by Telis on 2015/6/6.
  */
 public class EraseView extends View {
