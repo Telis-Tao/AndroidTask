@@ -55,9 +55,22 @@
         android:layout_alignParentBottom="true"/>
 
     <com.example.telis.androidtask.DoubleCursorProgressBar
+        android:id="@+id/double_cursor_progress_bar"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/mirror_view"/>
 
+    <Button
+        android:id="@+id/test1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"/>
+
+    <Button
+        android:id="@+id/test2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/test1"/>
 </RelativeLayout>

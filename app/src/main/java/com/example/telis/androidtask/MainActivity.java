@@ -38,13 +38,15 @@ public class MainActivity extends Activity {
     private Set<String> mWaitToBeLoad;
     private BroadcastReceiver receiver;
     private EditText imageView;
+    private DoubleCursorProgressBar mDoubleCursorProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mWaitToBeLoad = new HashSet<>();
-
+        mDoubleCursorProgressBar = (DoubleCursorProgressBar) findViewById(R.id
+                .double_cursor_progress_bar);
         progressBar = (ProgressBar) findViewById(R.id.progress_bar);
         interImageView = (ImageView) findViewById(R.id.inter_image_view);
         //        picassoImageView = (ImageView) findViewById(R.id.picasso_image_view);
@@ -71,6 +73,23 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 new ImageLoadAsyncTask().execute(imageView.getText().toString());
+            }
+        });
+
+
+        //test
+        Button left = (Button) findViewById(R.id.test1);
+        left.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mDoubleCursorProgressBar.setLeftCursor(60);
+            }
+        });
+        Button right = (Button) findViewById(R.id.test2);
+        right.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mDoubleCursorProgressBar.setRightCursor(60);
             }
         });
     }
@@ -105,6 +124,7 @@ public class MainActivity extends Activity {
 
     class ImageLoadAsyncTask extends AsyncTask<String, Integer, Bitmap> {
         private String url;
+        private int imageLength;
 
         public ImageLoadAsyncTask() {
             if (cache == null) {
@@ -136,6 +156,9 @@ public class MainActivity extends Activity {
         @Override
         protected void onProgressUpdate(Integer... values) {
             super.onProgressUpdate(values);
+            if (imageLength != 0) {
+                progressBar.setMax(imageLength);
+            }
             progressBar.setProgress(values[0]);
         }
 
@@ -159,8 +182,7 @@ public class MainActivity extends Activity {
                     URL url = new URL(params[0]);
                     conn = (HttpURLConnection) url.openConnection();
                     conn.connect();
-                    int imageLength = conn.getContentLength();
-                    progressBar.setMax(imageLength);
+                    imageLength = conn.getContentLength();
                     byte[] b = new byte[imageLength];
                     is = conn.getInputStream();
                     for (int tmp, i = 0, count = 0; (tmp = is.read()) != -1; ) {
@@ -168,7 +190,7 @@ public class MainActivity extends Activity {
                         count++;
                         if (count >= imageLength / 20) {
                             count = 0;
-                            onProgressUpdate(i);
+                            publishProgress(i);
                         }
                     }
                     bitmap = BitmapFactory.decodeByteArray(b, 0, b.length);
