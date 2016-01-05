@@ -3,6 +3,7 @@
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@android:color/holo_blue_dark"
                 tools:context=".MainActivity">
 
 
@@ -41,12 +42,12 @@
         android:max="100"
         android:visibility="gone"/>
 
-    <ImageView
+    <com.example.telis.androidtask.DarkImageView
         android:id="@+id/inter_image_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/load_image_button"/>
-
+        android:layout_below="@+id/load_image_button"
+        android:background="@drawable/ic_camera_1"/>
 
     <com.example.telis.androidtask.MirrorView
         android:id="@+id/mirror_view"
@@ -73,4 +74,13 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/test1"/>
+
+    <com.bm.library.PhotoView
+        android:id="@+id/rotate_image_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:scaleType="fitCenter"
+        android:visibility="gone"
+        />
 </RelativeLayout>
